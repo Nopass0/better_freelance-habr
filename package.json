@@ -1,0 +1,25 @@
+{
+  "name": "better_fh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'npm run format && npm run build && node build/background/background.js'",
+    "build": "npm run clean-build && npm run copy-files && tsc",
+    "clean-build": "IF EXIST build (rmdir /S /Q build) ELSE (mkdir build)",
+    "copy-files": "copy .\\manifest.json+.\\background.html build",
+    "build-watch": "tsc -w",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prestart": "npm run build",
+    "prebuild-watch": "npm run build",
+    "poststart": "echo 'Extension is running with nodemon.'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2"
+  }
+}
